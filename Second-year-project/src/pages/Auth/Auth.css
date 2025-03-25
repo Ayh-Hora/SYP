@@ -1,0 +1,138 @@
+:root {
+  --primary: #4CAF50; /* Green */
+  --primary-hover: #396a92; /* Darker Green for hover */
+  --card-bg: #fff;
+  --radius: 8px;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --text: #333;
+  --error: #f44336; /* Red */
+  --success: #4CAF50; /* Green */
+  --input-bg: #f9f9f9;
+  --input-border: #ddd;
+  --input-focus: #4CAF50;
+  --transition: 0.3s;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f0f2f5;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: url('background-image.jpg') no-repeat center center/cover;
+}
+
+.auth-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  transition: var(--transition);
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.input-group input,
+.role-select {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: var(--input-bg);
+  transition: var(--transition);
+}
+
+.input-group input:focus,
+.role-select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+.role-select {
+  padding-left: 1rem;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+  text-decoration: none;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-footer a {
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.error-message,
+.success-message {
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-message {
+  color: var(--error);
+  background: #fee2e2;
+}
+
+.success-message {
+  color: var(--success);
+  background: #dcfce7;
+}
