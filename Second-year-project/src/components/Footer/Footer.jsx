@@ -1,16 +1,18 @@
 import React from 'react';
 import './Footer.css';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Contact Us</h3>
-          <p>Email: info@healthhub.com</p>
-          <p>Phone: +1 234 567 890</p>
-          <p>Address: 123 Health St, Wellness City, USA</p>
+          <h3>
+            <Mail className="icon" /> Contact Us
+          </h3>
+          <p><Mail size={16} /> Email: info@healthhub.com</p>
+          <p><Phone size={16} /> Phone: +977 9848851860</p>
+          <p><MapPin size={16} /> Dulari Morang, Nepal</p>
         </div>
         <div className="footer-section">
           <h3>Quick Links</h3>
@@ -24,17 +26,30 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Follow Us</h3>
           <div className="social-links">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><Facebook /></a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><Twitter /></a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><Instagram /></a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <Facebook className="social-icon" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <Twitter className="social-icon" />
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <Instagram className="social-icon" />
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="social-icon" />
+            </a>
           </div>
         </div>
         <div className="footer-section">
           <h3>Newsletter</h3>
           <form className="newsletter-form">
-            <input type="email" placeholder="Your Email" required />
-            <button type="submit">Subscribe</button>
+            <div className="input-wrapper">
+              <Mail className="input-icon" />
+              <input type="email" placeholder="Your Email" required />
+            </div>
+            <button type="submit">
+              <Send size={16} /> Subscribe
+            </button>
           </form>
         </div>
       </div>

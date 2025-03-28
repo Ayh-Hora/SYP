@@ -29,9 +29,9 @@ const TodoList = () => {
   };
 
   return (
-    <div className="todo-list" style={{ padding: '20px', backgroundColor: '#f9f9f9' }}>
+    <div className="todo-list">
       <div className="todo-card">
-        <h1 className="todo-title">Todo List</h1>
+        <h1 className="todo-title">My Checklist</h1>
 
         {/* Add Todo Form */}
         <form onSubmit={addTodo} className="add-todo-form">

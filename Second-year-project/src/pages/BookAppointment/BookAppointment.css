@@ -1,0 +1,396 @@
+:root {
+    --primary-blue: #007BFF;
+    --light-blue: #E6F0FA;
+    --dark-blue: #0056B3;
+    --white: #FFFFFF;
+    --text-dark: #2C3E50;
+    --text-light: #7F8C8D;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 12px 32px rgba(0, 123, 255, 0.3);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-blur: blur(10px);
+    --error-red: #EF4444;
+  }
+  
+  .book-appointment {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--light-blue) 0%, #d0e4ff 100%);
+    padding: 80px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .appointment-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 900px;
+    transition: var(--transition);
+  }
+  
+  .appointment-card:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-5px);
+  }
+  
+  .appointment-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .title-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-blue);
+    transition: var(--transition);
+  }
+  
+  .title-icon:hover {
+    transform: rotate(15deg);
+  }
+  
+  .success-message, .error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  
+  .success-message {
+    background: var(--primary-blue);
+    color: var(--white);
+    opacity: 0;
+    animation: bounceIn 0.6s ease forwards;
+  }
+  
+  .error-message {
+    background: var(--error-red);
+    color: var(--white);
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+  }
+  
+  .message-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .doctor-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .doctor-card:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-3px);
+  }
+  
+  .doctor-card.selected {
+    border: 2px solid var(--primary-blue);
+    background: rgba(0, 123, 255, 0.05);
+  }
+  
+  .doctor-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+  }
+  
+  .doctor-card p {
+    margin: 0.5rem 0;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .info-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-blue);
+  }
+  
+  .doctor-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+  }
+  
+  .view-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+  }
+  
+  .view-btn:hover {
+    background: var(--dark-blue);
+  }
+  
+  .action-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .appointment-form-section {
+    margin-top: 2rem;
+  }
+  
+  .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .form-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-blue);
+    transition: var(--transition);
+  }
+  
+  .form-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .form-input {
+    padding: 0.9rem;
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: var(--glass-blur);
+    transition: var(--transition);
+    width: 100%;
+  }
+  
+  .form-input:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  }
+  
+  .form-input:hover {
+    border-color: var(--primary-blue);
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+  }
+  
+  .submit-button {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    color: var(--white);
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+  }
+  
+  .submit-button:hover {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+    transform: translateY(-3px);
+    box-shadow: var(--hover-shadow);
+  }
+  
+  .doctor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    transition: var(--transition);
+  }
+  
+  .modal-content:hover {
+    box-shadow: var(--hover-shadow);
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .modal-content p {
+    margin: 0.75rem 0;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .modal-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-blue);
+  }
+  
+  .modal-content strong {
+    color: var(--primary-blue);
+  }
+  
+  .modal-close-btn {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+  }
+  
+  .modal-close-btn:hover {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .appointment-card {
+      padding: 1.5rem;
+      max-width: 90%;
+    }
+  
+    .appointment-title {
+      font-size: 1.8rem;
+    }
+  
+    .doctors-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .appointment-form {
+      gap: 1rem;
+    }
+  
+    .submit-button {
+      font-size: 1rem;
+    }
+  
+    .modal-content {
+      padding: 1.5rem;
+      max-width: 90%;
+    }
+  }

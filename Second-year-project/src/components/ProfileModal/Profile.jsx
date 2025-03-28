@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { MapPin, Mail, Phone, Star, BookOpen, Clock, ThumbsUp, MessageCircle, Camera, Stethoscope, HeartPulse } from 'lucide-react';
+import { MapPin, Mail, Phone, Star, BookOpen, Clock, MessageCircle, Camera, Stethoscope, HeartPulse, Calendar } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
 import './Profile.css';
 
@@ -10,25 +10,20 @@ const Profile = ({ user: currentUser, isPageView }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Determine if this is the current user's profile
   const isCurrentUser = userId === 'me' || userId === currentUser?.id;
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // If viewing own profile
         if (isCurrentUser) {
           setProfileUser(currentUser);
           setLoading(false);
           return;
         }
 
-        // Mock API call - replace with actual fetch in your implementation
         console.log(`Fetching profile for user ${userId}`);
-        // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Mock data - replace with actual API response
+
         const mockUsers = {
           'doc1': {
             id: 'doc1',
@@ -39,19 +34,21 @@ const Profile = ({ user: currentUser, isPageView }) => {
             experience: '12 years',
             bio: 'Board certified cardiologist with extensive experience in interventional procedures.',
             address: '123 Medical Center, Boston, MA',
-            email: 'dr.johnson@example.com',
-            phone: '(555) 123-4567'
+            email: 'dr.johnson@healthx.com',
+            phone: '(555) 123-4567',
+            isVerified: true,
           },
           'pat1': {
             id: 'pat1',
             name: 'Michael Brown',
             role: 'patient',
             medicalCondition: 'Type 2 Diabetes',
+            conditionDuration: '5 years',
             bio: 'Managing diabetes with regular checkups and healthy lifestyle.',
             address: '456 Oak Street, Boston, MA',
-            email: 'michael.b@example.com',
-            phone: '(555) 987-6543'
-          }
+            email: 'michael.b@healthx.com',
+            phone: '(555) 987-6543',
+          },
         };
 
         const userData = mockUsers[userId] || null;
@@ -79,27 +76,26 @@ const Profile = ({ user: currentUser, isPageView }) => {
           {profileUser.photo ? (
             <img src={profileUser.photo} alt="Profile" className="profile-image" />
           ) : (
-            <FaUserCircle size={100} className="default-avatar" />
+            <FaUserCircle size={120} className="default-avatar" />
           )}
           {isCurrentUser && (
-            <div className="upload-photo">
+            <label className="upload-photo">
               <Camera size={20} />
               <input type="file" accept="image/*" />
-            </div>
+            </label>
           )}
         </div>
-        
+
         <div className="profile-title">
           <h1>{profileUser.name}</h1>
           {profileUser.specialty && <p className="specialty">{profileUser.specialty}</p>}
           {profileUser.medicalCondition && <p className="medical-condition">{profileUser.medicalCondition}</p>}
-          
           <div className="badges">
             {profileUser.isVerified && <span className="verified-badge">Verified</span>}
             {profileUser.isPremium && <span className="premium-badge">Premium</span>}
           </div>
         </div>
-        
+
         <div className="contact-info">
           {profileUser.address && (
             <div className="contact-item">
@@ -119,12 +115,6 @@ const Profile = ({ user: currentUser, isPageView }) => {
               <span>{profileUser.phone}</span>
             </div>
           )}
-          {profileUser.availability && (
-            <div className="contact-item">
-              <Clock size={18} />
-              <span>{profileUser.availability}</span>
-            </div>
-          )}
         </div>
       </header>
 
@@ -134,38 +124,25 @@ const Profile = ({ user: currentUser, isPageView }) => {
           <div className="stat-item">
             <div className="stars">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={18} fill={i < Math.floor(profileUser.rating) ? '#FFD700' : 'none'} />
+                <Star key={i} size={20} fill={i < Math.floor(profileUser.rating) ? '#FFD700' : 'none'} stroke="#FFD700" />
               ))}
             </div>
             <span className="stat-value">{profileUser.rating}/5</span>
             <span className="stat-label">Rating</span>
           </div>
         )}
-        
         <div className="stat-item">
-          {profileUser.role === 'doctor' ? <Stethoscope size={20} /> : <HeartPulse size={20} />}
-          <span className="stat-value">
-            {profileUser.role === 'doctor' ? profileUser.experience : profileUser.conditionDuration || 'N/A'}
-          </span>
-          <span className="stat-label">
-            {profileUser.role === 'doctor' ? 'Experience' : 'Condition Duration'}
-          </span>
+          {profileUser.role === 'doctor' ? <Stethoscope size={24} /> : <HeartPulse size={24} />}
+          <span className="stat-value">{profileUser.role === 'doctor' ? profileUser.experience : profileUser.conditionDuration || 'N/A'}</span>
+          <span className="stat-label">{profileUser.role === 'doctor' ? 'Experience' : 'Condition Duration'}</span>
         </div>
-        
-        {profileUser.appointments && (
-          <div className="stat-item">
-            <Calendar size={20} />
-            <span className="stat-value">{profileUser.appointments}</span>
-            <span className="stat-label">
-              {profileUser.role === 'doctor' ? 'Appointments' : 'Visits'}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Bio Section */}
       <section className="bio-section">
-        <h2><BookOpen size={20} /> {profileUser.role === 'doctor' ? 'Professional Bio' : 'Health Profile'}</h2>
+        <h2>
+          <BookOpen size={20} /> {profileUser.role === 'doctor' ? 'Professional Bio' : 'Health Profile'}
+        </h2>
         <p>{profileUser.bio || 'No information provided.'}</p>
       </section>
 
@@ -179,7 +156,7 @@ const Profile = ({ user: currentUser, isPageView }) => {
             </button>
             {profileUser.role === 'doctor' && (
               <button className="secondary-cta">
-                View Availability
+                <Clock size={18} /> View Availability
               </button>
             )}
           </>

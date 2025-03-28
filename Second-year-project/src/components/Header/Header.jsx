@@ -6,14 +6,23 @@ import './Header.css';
 const Header = ({ onLogout, toggleChat }) => {
   const [user, setUser] = useState(null);
 
-
   useEffect(() => {
-    const storedUser = localStorage.getItem('role');
-    console.log(storedUser)
-    if (storedUser) {
-      setUser(storedUser);
+    const storedRole = localStorage.getItem('role');
+    if (storedRole) {
+      setUser({ 
+        role: storedRole, 
+        name: storedRole === 'patient' ? 'Patient' : storedRole === 'doctor' ? 'Doctor' : 'Admin' 
+      });
     }
   }, []);
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header className="header">
@@ -21,31 +30,28 @@ const Header = ({ onLogout, toggleChat }) => {
         {/* Left Section */}
         <div className="nav-left">
           <Link to="/" className="logo">
-            <span className="logo-text">HealthHub</span>
+            <span className="logo-text">HealthX</span>
           </Link>
 
           {user && (
             <div className="role-nav">
-              {user === 'patient' && (
+              {user.role === 'patient' && (
                 <>
                   <Link to="/user/doctors" className="nav-link">
-                    <FaStethoscope /> Find Doctors
+                    <FaStethoscope className="nav-icon" /> Find Doctors
                   </Link>
                   <Link to="/user/todo" className="nav-link">
-                    <FaList /> My Checklist
-                  </Link>
-                  <Link to="/user/appointments" className="nav-link">
-                    <FaStethoscope /> My Appointments
+                    <FaList className="nav-icon" /> My Checklist
                   </Link>
                 </>
               )}
-              {user === 'doctor' && (
+              {user.role === 'doctor' && (
                 <>
                   <Link to="/doctor/dashboard" className="nav-link">
-                    <FaStethoscope /> Appointments
+                    <FaStethoscope className="nav-icon" /> Appointments
                   </Link>
                   <Link to="/doctor/messages" className="nav-link">
-                    <FaCommentDots /> Messages
+                    <FaCommentDots className="nav-icon" /> Messages
                   </Link>
                 </>
               )}
@@ -79,15 +85,14 @@ const Header = ({ onLogout, toggleChat }) => {
                   </div>
                   <FaCaretDown className="dropdown-arrow" />
                 </div>
-                
                 <div className="dropdown-menu">
-                  <Link to={`/${user.role}/profile`} className="dropdown-item"> 
+                  <Link to={`/${user.role}/profile`} className="dropdown-item">
                     <FaUserEdit /> Visit Profile
                   </Link>
                   <Link to="/switch-user" className="dropdown-item">
                     <FaUserCircle /> Switch User
                   </Link>
-                  <button onClick={onLogout} className="dropdown-item">
+                  <button onClick={onLogout} className="dropdown-item logout-btn">
                     <FaSignOutAlt /> Logout
                   </button>
                 </div>
@@ -96,8 +101,12 @@ const Header = ({ onLogout, toggleChat }) => {
           ) : (
             <div className="guest-nav">
               <Link to="/" className="nav-link">Home</Link>
-              <Link to="/about" className="nav-link">About</Link>
-              <Link to="/services" className="nav-link">Services</Link>
+              <button onClick={() => scrollToSection('about-section')} className="nav-link">
+                About
+              </button>
+              <button onClick={() => scrollToSection('features-section')} className="nav-link">
+                Services
+              </button>
               <Link to="/login" className="join-btn">Join Us</Link>
             </div>
           )}

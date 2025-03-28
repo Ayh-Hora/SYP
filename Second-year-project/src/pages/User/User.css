@@ -1,118 +1,101 @@
-/* src/pages/DoctorsList/User.css */
-.doctors-list-page {
-  padding: 20px;
+:root {
+  --primary-blue: #007BFF; /* Vibrant Blue */
+  --light-blue: #E6F0FA; /* Soft Light Blue */
+  --dark-blue: #0056B3; /* Deep Blue for Hover */
+  --white: #FFFFFF; /* Pure White */
+  --text-dark: #2C3E50; /* Dark Text */
+  --text-light: #7F8C8D; /* Light Gray Text */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --transition: all 0.3s ease;
 }
 
-.search-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.search-bar {
+.todo-list {
+  min-height: 100vh;
+  background: var(--light-blue);
+  padding: 80px 20px 20px; /* Extra padding-top to account for fixed header */
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 10px;
 }
 
-.search-icon {
-  margin-right: 10px;
-  color: #666;
+.todo-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
 }
 
-.search-bar input {
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.todo-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.doctors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+.add-todo-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.doctor-item {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.2s;
-  background-color: #fff;
+.add-todo-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--light-blue);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: var(--transition);
 }
 
-.doctor-item:hover {
-  transform: scale(1.05);
+.add-todo-input:focus {
+  border-color: var(--primary-blue);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
-.doctor-link {
-  text-decoration: none;
-  color: inherit;
+.add-todo-button {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.doctor-card {
+.add-todo-button:hover {
+  background: var(--dark-blue);
+}
+
+.todo-items {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 15px;
+  gap: 1rem;
 }
 
-.doctor-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.doctor-info {
+.empty-message {
   text-align: center;
-  margin-top: 10px;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-top: 2rem;
 }
 
-.doctor-info h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .todo-card {
+    padding: 1.5rem;
+  }
 
-.specialty {
-  color: #666;
-  margin: 5px 0;
-}
+  .add-todo-form {
+    flex-direction: column;
+  }
 
-.rating, .experience {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 0;
-}
-
-.star-icon, .clock-icon {
-  margin-right: 5px;
-  color: #ffcc00;
-}
-
-.book-btn, .cancel-button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.book-btn {
-  background-color: #2563eb;
-  color: white;
-}
-
-.cancel-button {
-  background-color: #dc2626;
-  color: white;
-}
-
-.book-btn:hover, .cancel-button:hover {
-  opacity: 0.9;
+  .add-todo-button {
+    width: 100%;
+  }
 }

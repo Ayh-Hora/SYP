@@ -1,10 +1,22 @@
+:root {
+  --primary-blue: #007BFF; /* Vibrant Blue */
+  --light-blue: #E6F0FA; /* Soft Light Blue */
+  --dark-blue: #0056B3; /* Deep Blue for Hover */
+  --white: #FFFFFF; /* Pure White */
+  --text-dark: #2C3E50; /* Dark Text */
+  --text-light: #7F8C8D; /* Light Gray Text */
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
 /* Base Styles */
 .header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  box-shadow: var(--shadow);
   z-index: 1000;
   height: 70px;
 }
@@ -27,15 +39,19 @@
   height: 100%;
 }
 
+.logo {
+  text-decoration: none;
+}
+
 .logo-text {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #2c3e50;
-  transition: color 0.3s ease;
+  color: var(--primary-blue);
+  transition: var(--transition);
 }
 
 .logo-text:hover {
-  color: #e74c3c;
+  color: var(--dark-blue);
 }
 
 .role-nav {
@@ -43,7 +59,7 @@
   gap: 2rem;
   height: 100%;
   align-items: center;
-  margin-left: 28rem;
+  margin-left: 0; /* Removed large margin for better layout */
 }
 
 /* Right Section */
@@ -54,6 +70,32 @@
   height: 100%;
 }
 
+/* Navigation Links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+}
+
 /* Guest Navigation */
 .guest-nav {
   display: flex;
@@ -62,16 +104,17 @@
 }
 
 .join-btn {
-  background: #3498db;
-  color: white;
+  background: var(--primary-blue);
+  color: var(--white);
   padding: 0.6rem 1.5rem;
-  border-radius: 6px;
+  border-radius: var(--radius);
   text-decoration: none;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
 .join-btn:hover {
-  background: #2980b9;
+  background: var(--dark-blue);
 }
 
 /* User Dropdown */
@@ -89,16 +132,16 @@
   padding: 0 1.5rem;
   height: 100%;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: var(--transition);
 }
 
 .dropdown-trigger:hover {
-  background: #f8f9fa;
+  background: var(--light-blue);
 }
 
 .user-icon {
   font-size: 1.5rem;
-  color: #7f8c8d;
+  color: var(--primary-blue);
 }
 
 .user-info {
@@ -108,27 +151,34 @@
 
 .user-name {
   font-weight: 500;
-  color: #2c3e50;
+  color: var(--text-dark);
 }
 
 .user-role {
   font-size: 0.8rem;
-  color: #95a5a6;
+  color: var(--text-light);
   text-transform: capitalize;
+}
+
+.dropdown-arrow {
+  color: var(--text-dark);
+  width: 16px;
+  height: 16px;
 }
 
 .dropdown-menu {
   position: absolute;
   right: 0;
   top: 100%;
-  background: white;
-  border-radius: 8px;
+  background: var(--white);
+  border-radius: var(--radius);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   min-width: 200px;
   padding: 0.5rem 0;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transform: translateY(10px);
+  transition: var(--transition);
   z-index: 1001;
 }
 
@@ -144,38 +194,42 @@
   gap: 1rem;
   width: 100%;
   padding: 0.8rem 1.5rem;
-  color: #34495e;
+  color: var(--text-dark);
   text-decoration: none;
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition);
 }
 
 .dropdown-item:hover {
-  background: #f8f9fa;
-  color: #e74c3c;
+  background: var(--light-blue);
+  color: var(--primary-blue);
 }
-.nav-link {
-  text-decoration: none;
+
+.logout-btn {
+  color: #E74C3C; /* Red for logout */
 }
-/* Chat Button
+
+.logout-btn:hover {
+  background: #FEE2E2; /* Light red hover */
+  color: #C0392B;
+}
+
+/* Chat Button */
 .chat-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #3498db;
-  color: white;
-  padding: 0.8rem 1.5rem;
+  background: none;
   border: none;
-  border-radius: 6px;
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  padding: 0.8rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: var(--transition);
 }
 
 .chat-toggle:hover {
-  background: #2980b9;
-} */
+  color: var(--dark-blue);
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -190,10 +244,7 @@
   .role-nav,
   .guest-nav .nav-link:not(.join-btn) {
     display: none;
-  }
 
-  .chat-toggle span {
-    display: none;
   }
 
   .chat-toggle {
@@ -212,8 +263,8 @@
 
   .dropdown-menu {
     right: 1rem;
-    left: 1rem;
-    width: auto;
+    left: auto;
+    width: 180px;
   }
 }
 

@@ -2,16 +2,25 @@
 export const doctors = [
   {
     id: 1,
-    name: 'Dr. John Doe',
-    image: 'https://example.com/doctor1.jpg',
+    name: 'Dr. Sudan',
+   
     specialty: 'Cardiologist',
     rating: 4.5,
     experience: 10
   },
   {
     id: 2,
-    name: 'Dr. Jane Smith',
-    image: "D:\assassins-creed-cape-or-banner.png",
+    name: 'Dr. Mukunda',
+   
+    specialty: 'Neurologist',
+    rating: 4.7,
+    experience: 8
+  },
+
+  {
+    id: 2,
+    name: 'Dr. Utkrish',
+   
     specialty: 'Neurologist',
     rating: 4.7,
     experience: 8

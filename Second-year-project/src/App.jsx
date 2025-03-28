@@ -7,29 +7,41 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import UserDashboard from './pages/User/Dashboard';
 import DoctorsList from './pages/User/DoctorsList';
+
 import TodoList from './pages/User/TodoList';
 import DoctorDashboard from './pages/Doctor/Dashboard';
 import AdminDashboard from './pages/Admin/Dashboard';
 import Chat from './components/Chat/Chat';
 import Profile from './components/ProfileModal/Profile';
+import BookAppointment from './pages/BookAppointment/BookAppointment';
 import './styles/global.css';
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [showChat, setShowChat] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('healthhub-user');
     if (storedUser) {
-      console.log('Stored User:', storedUser);
-      setUser(JSON.parse(storedUser));
+      const parsedUser = JSON.parse(storedUser);
+      console.log('Stored User:', parsedUser); // Debugging
+      setUser(parsedUser);
+    } else {
+      console.log('No user found in localStorage');
     }
+    setIsLoading(false); // Loading complete
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('healthhub-user');
-    setUser(null);
+    localStorage.removeItem('healthhub-user'); // Clear user data
+    localStorage.removeItem('role'); // Clear role data if stored separately
+    setUser(null); // Reset user state
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Show a loading indicator
+  }
 
   return (
     <BrowserRouter>
@@ -55,7 +67,24 @@ const App = () => {
           {/* User Routes */}
           <Route path="/user/dashboard" element={user?.role === 'patient' ? <UserDashboard /> : <Navigate to="/login" />} />
           <Route path="/user/doctors" element={user?.role === 'patient' ? <DoctorsList /> : <Navigate to="/login" />} />
-          <Route path="/user/todo" element={user?.role === 'patient' ? <TodoList /> : <Navigate to="/login" />} />
+          <Route path="/book-appointment" element={<BookAppointment />} />
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route
+            path="/user/todo"
+            element={
+              user?.role === 'patient' ? (
+                <>
+                  {console.log('Rendering TodoList for user:', user)}
+                  <TodoList />
+                </>
+              ) : (
+                <>
+                  {console.log('Redirecting to login, user:', user)}
+                  <Navigate to="/login" />
+                </>
+              )
+            }
+          />
           
           {/* Profile Routes */}
           <Route 
